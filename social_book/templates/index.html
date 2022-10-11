@@ -61,7 +61,8 @@
                             </div>
     
                             <!-- notification contents -->
-                            <form>
+                            <form action="upload" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
                             <div class="flex justify-center flex-center text-center">
     
                                 <div class="flex flex-col choose-upload text-center">
@@ -75,16 +76,18 @@
 
                                     <p class="my-3 leading-6"> Upload pics <br> please upload here ..
                                     </p>
-                                    <div uk-form-custom>
-                                        <input type="file">
-                                        <a href="#" class="button soft-warning small"> Choose file</a>
+                                    <div>
+                                        <input type="file" name="image_upload">
+                                        <textarea class="button soft-warning small" name="caption" placeholder="caption..."></textarea>
+                                        <br>
+                                        <button class="button bg-blue-700" type="submit">Upload</button>
+                                    
                                     </div>
-    
-                                    <a href="#" class="uk-text-muted mt-3 uk-link"
+                            
+                                 <a href="#" class="uk-text-muted mt-3 uk-link"
                                         uk-toggle="target: .choose-upload ;  animation: uk-animation-slide-right-small, uk-animation-slide-left-medium; queued: true">
                                         Or Import Video </a>
-                                </div>
-    
+                                </div> 
                                 <div class="uk-flex uk-flex-column choose-upload" hidden>
                                     <div class="mx-auto flex flex-col h-24 items-center justify-center relative w-full rounded-lg">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-12">
@@ -109,7 +112,7 @@
                                 Your Video size Must be Maxmium 999MB
                             </div>
                         </div>
-                        
+                    </form>
                          <!-- Notification -->
 
                         {% comment %} <a href="#" class="header-links-item">
@@ -167,7 +170,7 @@
 
                         <!-- profile -->
 
-                        <a href="#">
+                        <a href="">
                             <img src="{{user_profile.profileimg.url}}" class="header-avatar" alt="">
                         </a>
                         <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
